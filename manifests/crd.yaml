@@ -27005,6 +27005,14 @@ spec:
                       pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                       x-kubernetes-int-or-string: true
                     type: object
+                  scaleInParallelism:
+                    default: 1
+                    format: int32
+                    type: integer
+                  scaleOutParallelism:
+                    default: 1
+                    format: int32
+                    type: integer
                   schedulerName:
                     type: string
                   serviceAccount:
@@ -29387,6 +29395,14 @@ spec:
                     type: object
                   rocksDBLogVolumeName:
                     type: string
+                  scaleInParallelism:
+                    default: 1
+                    format: int32
+                    type: integer
+                  scaleOutParallelism:
+                    default: 1
+                    format: int32
+                    type: integer
                   schedulerName:
                     type: string
                   separateRaftLog:

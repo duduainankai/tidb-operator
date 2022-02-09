@@ -579,6 +579,16 @@ type TiKVSpec struct {
 	// EnableNamedStatusPort enables status port(20180) in the Pod spec.
 	// If you set it to `true` for an existing cluster, the TiKV cluster will be rolling updated.
 	EnableNamedStatusPort bool `json:"enableNamedStatusPort,omitempty"`
+
+	// ScaleInParallelism configures max scale in replicas for TiKV stores.
+	// +kubebuilder:default=1
+	// +optional
+	ScaleInParallelism *int32 `json:"scaleInParallelism,omitempty"`
+
+	// ScaleOutParallelism configures max scale out replicas for TiKV stores.
+	// +kubebuilder:default=1
+	// +optional
+	ScaleOutParallelism *int32 `json:"scaleOutParallelism,omitempty"`
 }
 
 // TiFlashSpec contains details of TiFlash members
@@ -635,6 +645,15 @@ type TiFlashSpec struct {
 	// Failover is the configurations of failover
 	// +optional
 	Failover *Failover `json:"failover,omitempty"`
+	// ScaleInParallelism configures max scale in replicas for TiFlash.
+	// +kubebuilder:default=1
+	// +optional
+	ScaleInParallelism *int32 `json:"scaleInParallelism,omitempty"`
+
+	// ScaleOutParallelism configures max scale out replicas for TiFlash.
+	// +kubebuilder:default=1
+	// +optional
+	ScaleOutParallelism *int32 `json:"scaleOutParallelism,omitempty"`
 }
 
 // TiCDCSpec contains details of TiCDC members

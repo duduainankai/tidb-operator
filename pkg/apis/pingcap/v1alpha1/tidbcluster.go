@@ -868,11 +868,39 @@ func (tikv *TiKVSpec) GetRecoverByUID() types.UID {
 	return tikv.Failover.RecoverByUID
 }
 
+func (tikv *TiKVSpec) GetScaleInParallelism() int {
+	if tikv.ScaleInParallelism == nil {
+		return 1
+	}
+	return int(*(tikv.ScaleInParallelism))
+}
+
+func (tikv *TiKVSpec) GetScaleOutParallelism() int {
+	if tikv.ScaleOutParallelism == nil {
+		return 1
+	}
+	return int(*(tikv.ScaleOutParallelism))
+}
+
 func (tiflash *TiFlashSpec) GetRecoverByUID() types.UID {
 	if tiflash.Failover == nil {
 		return ""
 	}
 	return tiflash.Failover.RecoverByUID
+}
+
+func (tiflash *TiFlashSpec) GetScaleInParallelism() int {
+	if tiflash.ScaleInParallelism == nil {
+		return 1
+	}
+	return int(*(tiflash.ScaleInParallelism))
+}
+
+func (tiflash *TiFlashSpec) GetScaleOutParallelism() int {
+	if tiflash.ScaleOutParallelism == nil {
+		return 1
+	}
+	return int(*(tiflash.ScaleOutParallelism))
 }
 
 func (tidbSvc *TiDBServiceSpec) ShouldExposeStatus() bool {
