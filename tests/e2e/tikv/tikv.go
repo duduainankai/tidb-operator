@@ -36,6 +36,7 @@ import (
 	aggregatorclient "k8s.io/kube-aggregator/pkg/client/clientset_generated/clientset"
 	"k8s.io/kubernetes/test/e2e/framework"
 	"k8s.io/kubernetes/test/e2e/framework/log"
+	"k8s.io/utils/pointer"
 	ctrlCli "sigs.k8s.io/controller-runtime/pkg/client"
 
 	"github.com/pingcap/tidb-operator/pkg/apis/label"
@@ -355,7 +356,7 @@ var _ = ginkgo.Describe("[TiKV: Scale in simultaneously]", func() {
 				utiltc.MustCreateTCWithComponentsReady(genericCli, oa, tc, 10*time.Minute, 10*time.Second)
 
 				err := controller.GuaranteedUpdate(genericCli, tc, func() error {
-					tc.Spec.TiKV.ScaleInParallelism = tests.Int32Ptr(tcase.scaleInParallelism)
+					tc.Spec.TiKV.ScaleInParallelism = pointer.Int32Ptr(tcase.scaleInParallelism)
 					tc.Spec.TiKV.Replicas = tcase.finalTiKVReplica
 					return nil
 				})
@@ -439,7 +440,7 @@ var _ = ginkgo.Describe("[TiKV: Scale in simultaneously]", func() {
 				utiltc.MustCreateTCWithComponentsReady(genericCli, oa, tc, 5*time.Minute, 10*time.Second)
 
 				err := controller.GuaranteedUpdate(genericCli, tc, func() error {
-					tc.Spec.TiKV.ScaleInParallelism = tests.Int32Ptr(tcase.scaleInParallelism)
+					tc.Spec.TiKV.ScaleInParallelism = pointer.Int32Ptr(tcase.scaleInParallelism)
 					tc.Spec.TiKV.Replicas = tcase.finalTiKVReplica
 					setDeleteSlots(tc, tcase.finalDeleteSlots)
 					return nil

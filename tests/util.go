@@ -60,7 +60,3 @@ func waitForPodNotFoundInNamespace(c kubernetes.Interface, podName, ns string, t
 		return false, nil
 	})
 }
-
-func Int32Ptr(i int32) *int32 {
-	return &i
-}
